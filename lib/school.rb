@@ -1,25 +1,32 @@
-def sort 
-  nu_hash = {}
-  roster.each do |x, y| 
-    nu_hash[x] = y.sort 
-  end 
-  nu_hash
-end 
-  
-end 
+require 'pry'
 
+class School
 
+  def initialize(school_name)
+    @school_name = school_name
+    @roster = {}
+  end
 
-school = School.new("Bayside High School")
-school.roster
-school.add_student("Zach Morris", 9)
-school.add_student("Moshe Zeus", 9)
-school.add_student("Onkelos Octavius", 9)
-school.roster
-school.add_student("Sugar Zaza", 5)
-school.roster
-school.add_student("Theo Madus", 5)
-school.add_student("Abbah Zabbah", 2)
-school.roster
-school.grade(9)
-school.sort
+  def roster
+    @roster
+  end
+
+  def add_student(name, grade)
+    @student_name = name
+    @grade = grade
+    if @roster.include?(grade) == false
+      @roster[grade] = []
+    end
+    @roster[grade] << name
+  end
+
+  def grade(number)
+    @roster[number]
+  end
+
+  def sort
+    @roster.each do |grade, name|
+      @roster[grade] = name.sort
+    end
+  end
+end
